@@ -26,5 +26,14 @@ puts movies.all.first.has_genre?('Drama')
 puts "\nCheck all movies (first 5):"
 puts movies.all.first(5)
 
-puts "\nCheck movie sort (by date ):"
-p movies.movie_sort(:date)
+puts "\nCheck movies sort (by date first 5 ):"
+puts movies.movie_sort(:date).first(5)
+
+puts "\nCheck movies filter (by genre first 5):"
+puts movies.filter(:genre, 'Comedy').first(5)
+
+puts "\nCheck movies statistic (by author):"
+movies = movies.stats(:author)
+movies.each do |author, movie_counter|
+  puts "#{author} -- #{movies[author]}"
+end

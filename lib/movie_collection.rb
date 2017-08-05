@@ -13,7 +13,17 @@ class MovieCollection
     @films
   end
 
-  def movie_sort(sort_field)
-    @films.sort_by { |film| film.sort_field }
+  def movie_sort(movie_field)
+    @films.sort_by { |film| film.send(movie_field) }
+  end
+
+  def filter(movie_field, value)
+    @films.select { |film| film.send(movie_field).include?(value) }
+  end
+
+  def stats(movie_field)
+    films_authors = movie_sort(movie_field).map { |film| film.send(movie_field) }
+    films_authors.each_with_object(Hash.new(0)) { |movie_field, hsh| hsh[movie_field] += 1 }.to_h
   end
 end
+

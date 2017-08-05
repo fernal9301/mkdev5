@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Movie
-  attr_reader :link,
+  attr_accessor :link,
               :name,
               :year,
               :country,
@@ -28,6 +28,6 @@ class Movie
   end
 
   def to_s
-    "#{@name}: (#{@date}\; #{@genre}) - #{@duration}"
+    "#{@name}: (#{@date}\; #{@genre}) - #{@duration} - #{@author}"
   end
 end
